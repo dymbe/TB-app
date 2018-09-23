@@ -3,6 +3,34 @@ var ObjectID = require('mongodb').ObjectID
 //CRUD OPERATONS FOR THE DATABASE
 module.exports = function(app, db) {
 
+  //VASKELISTE METHODS --------------------------------------------------------
+  //GET: all records from table
+  app.get('/tb_app/vaskelister', (req, res) => {
+    //const details = { '_id': new ObjectID(id) };
+    db.db().collection('vaskelister').find({}).toArray(function(err, items) {
+      if (err) {
+        res.send({ 'error': 'An error has occured' });
+      } else {
+        res.send(items); //Returns the object
+      }
+    });
+  });
+
+  //POST: write to the DB.
+  app.post('/tb_app/vaskelister', (req, res) => {
+    //Store POST content message
+    const message = { dato: req.body.dato, rom: req.body.rom }
+    //Insert message in DB
+    db.db().collection('vaskelister').insertOne(message, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occured' });
+      } else {
+        res.send(result.ops[0]); //Store 1st element of result, which is the content
+      }
+    });
+  });
+
+  //TEST / DUMMY API METHODS --------------------------------------------------
 
   //GET: fetch record from DB.
   app.get('/tb_app/:id', (req, res) => {
@@ -16,6 +44,8 @@ module.exports = function(app, db) {
       }
     });
   });
+
+
   //DELETE: remove record from DB
   app.delete('/tb_app/:id', (req, res) => {
     const id = req.params.id;
