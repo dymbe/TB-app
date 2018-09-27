@@ -13,7 +13,7 @@ export default class Vaskelister extends React.Component {
   }
 
   componentDidMount(){
-    return fetch('http://192.168.1.50:8000/tb_app/vaskelister')
+    return fetch('http://192.168.1.46:8000/tb_app/vaskelister')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({

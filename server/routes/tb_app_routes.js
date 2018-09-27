@@ -15,9 +15,19 @@ module.exports = function(app, db) {
       }
     });
   });
+  //DELETE: ALL records from DB
+  app.delete('/tb_app/vaskelister', (req, res) => {
+    db.db().collection('vaskelister').remove( (err)  => {
+      if (err) {
+        res.send({ 'error': 'An error has occured' });
+      } else {
+        res.send('All records deleted!'); //Static info message
+      }
+    });
+  });
 
   //POST: write to the DB.
-  app.post('/tb_app/vaskelister', (req, res) => {
+  app.post('/tb_app/vaskelister/:dato&:rom', (req, res) => {
     //Store POST content message
     const message = { dato: req.body.dato, rom: req.body.rom }
     //Insert message in DB
@@ -29,6 +39,25 @@ module.exports = function(app, db) {
       }
     });
   });
+
+  //POST: write to the DB.
+  app.post('/tb_app/vaskelister/:dato&:rom', (req, res) => {
+    //Store POST content message
+    const message = { title: req.body.dato, text: req.body.rom }
+    //Insert message in DB
+    db.db().collection('vaskelister').insertOne(message, (err, result) => {
+      if (err) {
+        res.send({ 'error': 'An error has occured' });
+      } else {
+        res.send(result.ops[0]); //Store 1st element of result, which is the content
+      }
+    });
+  });
+
+
+
+
+
 
   //TEST / DUMMY API METHODS --------------------------------------------------
 
@@ -44,8 +73,6 @@ module.exports = function(app, db) {
       }
     });
   });
-
-
   //DELETE: remove record from DB
   app.delete('/tb_app/:id', (req, res) => {
     const id = req.params.id;
