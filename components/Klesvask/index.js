@@ -2,12 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import { Content } from 'native-base';
 
-export default class Tournaments extends React.Component {
+export default class Klesvask extends React.Component {
   render() {
     return (
       <View style={styles.content}>
 
-        <Text>Turneringer vises her</Text>
+        <Text>Ledige maskiner vises her</Text>
 
       </View>
     );

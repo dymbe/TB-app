@@ -2,93 +2,27 @@ import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
 import {Root, Container, Header, Left, Body, Right, Title, Content, Footer, FooterTab, Button, Text, Icon } from 'native-base';
 import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { createDrawerNavigator } from 'react-navigation'; // Version can be specified in package.json
 import Expo from 'expo'
 
-import Calendar from './components/Calendar';
-import Vaskelister from './components/Vaskelister';
-import Tournaments from './components/Tournaments';
-import DoorOpener from './components/DoorOpener';
+import CustomHeader from './components/CustomHeader';
 
+import HomeScreen from './components/Home';
+import CalendarScreen from './components/Calendar';
+import VaskelisterScreen from './components/Vaskelister';
+import KlesvaskScreen from './components/Klesvask';
+import TurneringerScreen from './components/Turneringer';
+import KortspillScreen from './components/Kortspill';
 
-class TB_app extends Component {
-  constructor() {
-    super()
-    this.state = {
-      activeTab: "Calendar"
-    }
-  }
-  handleMenuClick(activeTab) {
-    this.setState({activeTab})
-  }
-
-
-  render() {
-    const {activeTab} = this.state
-    return (
-      <Container>
-
-
-        <Header style={styles.container} >
-          <Body style={styles.body} >
-            <Icon name="md-menu"/>
-            <View style={styles.bodyContainer} >
-              <Title>Teknobyen</Title>
-            </View>
-            <Icon name="notifications"/>
-          </Body>
-        </Header>
-
-
-        <Content contentContainerStyle={styles.content}>
-            {{
-              Calendar: <Calendar/>,
-              Vaskelister: <Vaskelister/>,
-              Tournaments: <Tournaments/>,
-              DoorOpener: <DoorOpener/>,
-            }[activeTab]}
-        </Content>
-
-
-        <Footer>
-          <FooterTab style={styles.footer} >
-            <Button active={activeTab === "Calendar"} vertical onPress={() => this.handleMenuClick("Calendar")}>
-              <Icon name="md-calendar"/>
-              <Text style={styles.navIconText} >Kalender</Text>
-            </Button>
-
-            <Button active={activeTab === "Vaskelister"} vertical onPress={() => this.handleMenuClick("Vaskelister")}>
-              <Icon name="md-clipboard"/>
-              <Text style={styles.navIconText} >Vaskelister</Text>
-            </Button>
-
-            <Button active={activeTab === "Tournaments"} vertical onPress={() => this.handleMenuClick("Tournaments")}>
-              <Icon name="md-git-network"/>
-              <Text style={styles.navIconText} >Turneringer</Text>
-            </Button>
-
-            <Button active={activeTab === "DoorOpener"} vertical onPress={() => this.handleMenuClick("DoorOpener")}>
-              <Icon name="md-unlock"/>
-              <Text style={styles.navIconText} >Døråpner</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
-
-
-      </Container>
-    )
-  }
-}
-
-
-
+import DoorOpenerScreen from './components/DoorOpener';
 
 export default class App extends Component {
   constructor() {
-  super();
-  this.state = {
-    isReady: false
-  };
-}
+    super();
+    this.state = {
+      isReady: false
+    };
+  }
   async componentWillMount() {
     await Expo.Font.loadAsync({
       'Roboto': require('native-base/Fonts/Roboto.ttf'),
@@ -103,29 +37,34 @@ export default class App extends Component {
     }
     return (
       <Root>
-        <TB_app />
+        <AppStack />
       </Root>
     )
   }
 }
 
+const AppStack = createDrawerNavigator({
+  Home: {
+    screen: HomeScreen,
+  },
+  Calendar: {
+    screen: CalendarScreen,
+  },
+  Vaskelister: {
+    screen: VaskelisterScreen,
+  },
+}, {
+  initialRouteName: 'Home',
+  //Hide GODDAMN header that lies on top of drawer navigation
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  },
+});
+
+
 //STYLES
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F9A423',
-    justifyContent: 'center',
-    marginTop: 24,
-  },
-  body: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingLeft: 5,
-    paddingRight: 5,
-  },
-  bodyContainer: {
-    flex: 1,
-  },
   navContainer: {
     backgroundColor: '#F9A423',
     height: 85,
@@ -133,7 +72,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     backgroundColor: '#efefef',
-    alignItems: 'center',
     justifyContent: 'center',
   },
   footer: {

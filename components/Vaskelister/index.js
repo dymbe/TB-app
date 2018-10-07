@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, FlatList, ActivityIndicator,} from 'react-native';
 import { Content, Button } from 'native-base';
+import CustomHeader from '../CustomHeader';
 
 
 export default class Vaskelister extends React.Component {
@@ -11,9 +12,12 @@ export default class Vaskelister extends React.Component {
       isLoading: true,
     }
   }
+  static navigationOptions = {
+    drawerLabel: 'Vaskelister',
+  };
 
   componentDidMount(){
-    return fetch('http://192.168.1.46:8000/tb_app/vaskelister')
+    return fetch('http://tb-app-server-tb-app-server.a3c1.starter-us-west-1.openshiftapps.com/tb_app/vaskelister')
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({
@@ -25,24 +29,33 @@ export default class Vaskelister extends React.Component {
       .catch((error) =>{
         console.error(error);
       });
-
   }
 
   render(){
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 20}}>
+        <View style={{flex: 1}}>
+          <CustomHeader title={"Vaskelister"} navigate={() => this.props.navigation.goBack(null)} />
           <ActivityIndicator/>
         </View>
       )
     }
     return(
-      <View style={{flex: 1, paddingTop:20}}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.dato}, {item.rom}</Text>}
-          keyExtractor={({_id}, index) => _id}
-        />
+      <View style={{flex: 1}}>
+        <CustomHeader title={"Vaskelister"} navigate={() => this.props.navigation.goBack(null)} />
+
+        <View style={styles.content}>
+          <FlatList
+            data={this.state.dataSource}
+            renderItem={({item}) =>
+            <View style={styles.listRow}>
+              <Text style={styles.rom}>{item.rom}</Text>
+              <Text>{item.dato}</Text>
+            </View>
+            }
+            keyExtractor={({_id}, index) => _id}
+          />
+          </View>
       </View>
     );
   }
@@ -58,11 +71,23 @@ export default class Vaskelister extends React.Component {
 }
 */
 
+
+
+
 //STYLES
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    alignItems: 'center',
+  },
+
+  listRow: {
+    flex: 1,
     justifyContent: 'center',
+    padding: 15,
+    borderWidth: 0.5,
+    borderColor: '#d6d7da',
+  },
+  rom: {
+    fontSize: 19,
   },
 });
