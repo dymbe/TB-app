@@ -1,41 +1,74 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, Image, ImageBackground } from 'react-native';
 import { Content } from 'native-base';
 
 import CustomHeader from '../CustomHeader';
 
 
 export default class Calendar extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      image1: require('../../images/calendar.jpg'),
+    };
+  }
   static navigationOptions = {
     drawerLabel: 'Home',
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Teknobyen APP"} navigate={() => this.props.navigation.openDrawer()} />
+        <CustomHeader title={"Teknobyen APP"} icon={"md-menu"} navigate={() => this.props.navigation.openDrawer()} />
 
         <View style={styles.content}>
-          <View style={styles.calendar}>
-            <Text>Kalender</Text>
+          <View style={{alignItems: 'center', height: 50}}>
+            <Image source={ require('../../images/logo.png') } style={styles.logo} />
           </View>
+
+          <ImageBackground  style={styles.largeImg} source={ require('../../images/calendar.jpg') }>
+            <TouchableHighlight style={styles.largeLink} onPress={() => navigate('Calendar') }>
+              <View style={styles.textBar}>
+              <Text style={{color: '#fff'}}>Eventkalender</Text>
+              </View>
+            </TouchableHighlight>
+          </ImageBackground>
+
           <View style={styles.row}>
-            <View style={styles.blockLink}>
-              <Text>Vaskelister</Text>
-            </View>
-            <View style={styles.blockLink}>
-              <Text>Klesvask</Text>
-            </View>
+            <ImageBackground  style={styles.img} source={ require('../../images/vaskelister.jpg') }>
+              <TouchableHighlight style={styles.link} onPress={() => navigate('Calendar') }>
+                <View style={styles.textBar}>
+                  <Text style={{color: '#fff'}}>Vaskelister</Text>
+                </View>
+              </TouchableHighlight>
+            </ImageBackground>
+            <ImageBackground  style={styles.img} source={ require('../../images/vaskemaskiner.jpg') }>
+              <TouchableHighlight style={styles.link} onPress={() => navigate('Calendar') }>
+                <View style={styles.textBar}>
+                  <Text style={{color: '#fff'}}>Vaskemaskiner</Text>
+                </View>
+              </TouchableHighlight>
+            </ImageBackground>
           </View>
 
           <View style={styles.row}>
-            <View style={styles.blockLink}>
-              <Text>Turneringer</Text>
-            </View>
-            <View style={styles.blockLink}>
-              <Text>Kortspill</Text>
-            </View>
+            <ImageBackground  style={styles.img} source={ require('../../images/turneringer.jpg') }>
+              <TouchableHighlight style={styles.link} onPress={() => navigate('Calendar') }>
+                <View style={styles.textBar}>
+                  <Text style={{color: '#fff'}}>Turneringer</Text>
+                </View>
+              </TouchableHighlight>
+            </ImageBackground>
+            <ImageBackground  style={styles.img} source={ require('../../images/kortspill.jpg') }>
+              <TouchableHighlight style={styles.link} onPress={() => navigate('Calendar') }>
+                <View style={styles.textBar}>
+                  <Text style={{color: '#fff'}}>Kortspill</Text>
+                </View>
+              </TouchableHighlight>
+            </ImageBackground>
           </View>
+
         </View>
 
       </View>
@@ -47,24 +80,44 @@ export default class Calendar extends React.Component {
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    padding: 5,
+    padding: 4,
   },
   row: {
     flexDirection: 'row',
   },
-  blockLink: {
+  logo: {
+    flex: 1,
+    resizeMode: 'contain'
+  },
+
+  img: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee',
-    padding: 40,
-    margin: 5,
+    margin: 4,
   },
-  calendar: {
+  largeImg: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#eee',
-    padding: 40,
-    margin: 5,
+    margin: 4,
   },
+  link: {
+    height: 125,
+    alignSelf: 'stretch',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  largeLink: {
+    height: 200,
+    alignSelf: 'stretch',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  textBar: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    alignSelf: 'stretch',
+    paddingLeft: 8,
+    paddingTop: 8,
+    paddingBottom: 8,
+  }
 });

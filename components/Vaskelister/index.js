@@ -32,17 +32,19 @@ export default class Vaskelister extends React.Component {
   }
 
   render(){
+    //Render loading screen
     if(this.state.isLoading){
       return(
         <View style={{flex: 1}}>
-          <CustomHeader title={"Vaskelister"} navigate={() => this.props.navigation.goBack(null)} />
+          <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
           <ActivityIndicator/>
         </View>
       )
     }
+    //Render content after loading
     return(
       <View style={{flex: 1}}>
-        <CustomHeader title={"Vaskelister"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
 
         <View style={styles.content}>
           <FlatList

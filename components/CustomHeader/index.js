@@ -11,11 +11,11 @@ export default class CustomHeader extends React.Component {
     return (
 
       <View style={styles.body} >
-        <Icon name="md-menu" onPress={() => this.props.navigate() } />
+        <Icon style={styles.icon} name={this.props.icon} onPress={() => this.props.navigate() } />
         <View style={styles.bodyContainer}>
           <Title>{this.props.title}</Title>
         </View>
-        <Icon name="notifications"/>
+        <Icon style={styles.icon} name="notifications"/>
       </View>
 
     );
@@ -31,11 +31,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    padding: 10,
-    paddingLeft: 15,
-    paddingRight: 15,
   },
   bodyContainer: {
     flex: 1,
+    alignItems: 'flex-start',
+  },
+  icon: {
+    padding: 13,
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: 30,
+    width: 60,
   },
 });

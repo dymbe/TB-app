@@ -13,7 +13,7 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Calendar"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Calendar"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
 
         <View style={styles.content}>
           <Text>Kalendersiden</Text>
