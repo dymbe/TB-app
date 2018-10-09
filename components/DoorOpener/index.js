@@ -13,7 +13,7 @@ export default class DoorOpener extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Døråpner"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Døråpner"} icon={"ios-arrow-back"} navigation={this.props.navigation} />
 
         <View style={styles.content}>
           <Text>Døråpnersiden</Text>

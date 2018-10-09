@@ -36,7 +36,7 @@ export default class Vaskelister extends React.Component {
     if(this.state.isLoading){
       return(
         <View style={{flex: 1}}>
-          <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
+          <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigation={this.props.navigation} />
           <ActivityIndicator/>
         </View>
       )
@@ -44,7 +44,7 @@ export default class Vaskelister extends React.Component {
     //Render content after loading
     return(
       <View style={{flex: 1}}>
-        <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Vaskelister"} icon={"ios-arrow-back"} navigation={this.props.navigation} />
 
         <View style={styles.content}>
           <FlatList

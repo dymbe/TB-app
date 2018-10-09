@@ -67,6 +67,7 @@ const AppStack = createDrawerNavigator({
   },
 }, {
   initialRouteName: 'Home',
+  drawerPosition: 'right',
   //Hide GODDAMN header that lies on top of drawer navigation
   headerMode: 'none',
   navigationOptions: {
