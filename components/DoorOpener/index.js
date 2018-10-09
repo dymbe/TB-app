@@ -1,14 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { Content } from 'native-base';
 
+import CustomHeader from '../CustomHeader';
+
+
 export default class DoorOpener extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Døråpner',
+  };
+
   render() {
     return (
-      <View style={styles.content}>
+      <View style={{flex: 1}}>
+        <CustomHeader title={"Døråpner"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
 
-        <Text>Åpne ytterdøren</Text>
-
+        <View style={styles.content}>
+          <Text>Døråpnersiden</Text>
+        </View>
       </View>
     );
   }
@@ -17,8 +26,8 @@ export default class DoorOpener extends React.Component {
 //STYLES
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
   },
 });
