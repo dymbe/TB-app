@@ -1,14 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View, Button} from 'react-native';
 import { Content } from 'native-base';
 
+import CustomHeader from '../CustomHeader';
+
+
 export default class Klesvask extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Klesvask',
+  };
+
   render() {
     return (
-      <View style={styles.content}>
+      <View style={{flex: 1}}>
+        <CustomHeader title={"Klesvask"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
 
-        <Text>Ledige maskiner vises her</Text>
-
+        <View style={styles.content}>
+          <Text>Klesvasksiden</Text>
+        </View>
       </View>
     );
   }
@@ -17,8 +26,8 @@ export default class Klesvask extends React.Component {
 //STYLES
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
   },
 });

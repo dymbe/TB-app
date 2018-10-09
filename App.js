@@ -53,6 +53,18 @@ const AppStack = createDrawerNavigator({
   Vaskelister: {
     screen: VaskelisterScreen,
   },
+  Klesvask: {
+    screen: KlesvaskScreen,
+  },
+  Turneringer: {
+    screen: TurneringerScreen,
+  },
+  Kortspill: {
+    screen: KortspillScreen,
+  },
+  Døråpner: {
+    screen: DoorOpenerScreen,
+  },
 }, {
   initialRouteName: 'Home',
   //Hide GODDAMN header that lies on top of drawer navigation
