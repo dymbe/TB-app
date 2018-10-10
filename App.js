@@ -44,7 +44,7 @@ export default class App extends Component {
 
 const CustomDrawerComponent = (props) => (
   <Container>
-    <Header style={{height: 160, backgroundColor: '#fff', paddingTop: 30}}>
+    <Header style={{height: 160, backgroundColor: '#F9A423'}}>
       <Body style={{alignItems: 'center', justifyContent: 'center'}}>
         <Image source={require('./images/logo.png')} style={{height: 100, width: 100}} />
       </Body>
