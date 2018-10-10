@@ -15,7 +15,7 @@ export default class Calendar extends React.Component {
   static navigationOptions = {
     drawerLabel: 'Home',
     drawerIcon: (
-      <Image source={ require('../../images/logo.png') } style={{width: 24, height: 24}}/>
+      <Image source={ require('../../images/hjem.png') } style={{width: 24, height: 24}}/>
     ),
   };
 

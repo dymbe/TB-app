@@ -3,12 +3,17 @@ import {StyleSheet, Text, View, Button} from 'react-native';
 import {Content} from 'native-base';
 import Config from '../../config';
 import {Client, Message} from 'react-native-paho-mqtt';
+
 import CustomHeader from '../CustomHeader';
 
 
 export default class DoorOpener extends React.Component {
   static navigationOptions = {
     drawerLabel: 'Døråpner',
+    drawerIcon: (
+      <
+      source={ require('../../images/døråpner.png') } style={{width: 24, height: 24}}/>
+    ),
   };
 
   constructor(props) {

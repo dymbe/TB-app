@@ -8,6 +8,10 @@ import CustomHeader from '../CustomHeader';
 export default class Calendar extends React.Component {
   static navigationOptions = {
     drawerLabel: 'Calendar',
+    drawerIcon: (
+      <Image source={ require('../../images/kalender.png') } style={{width: 24, height: 24}}/>
+    ),
+
   }
 
   render() {
