@@ -29,6 +29,7 @@
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-cli": "^2.0.1",
+    "react-native-paho-mqtt": "^0.1.1",
     "react-navigation": "^2.14.2"
   }
 }
