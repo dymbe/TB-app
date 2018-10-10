@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, Image} from 'react-native';
 import { Content } from 'native-base';
 
 import CustomHeader from '../CustomHeader';
@@ -8,6 +8,9 @@ import CustomHeader from '../CustomHeader';
 export default class DoorOpener extends React.Component {
   static navigationOptions = {
     drawerLabel: 'Døråpner',
+    drawerIcon: (
+      <Image source={ require('../../images/døråpner.png') } style={{width: 24, height: 24}}/>
+    ),
   };
 
   render() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, ActivityIndicator,} from 'react-native';
+import { StyleSheet, Text, View, FlatList, ActivityIndicator, Image} from 'react-native';
 import { Content, Button } from 'native-base';
 import CustomHeader from '../CustomHeader';
 
@@ -14,6 +14,9 @@ export default class Vaskelister extends React.Component {
   }
   static navigationOptions = {
     drawerLabel: 'Vaskelister',
+    drawerIcon: (
+      <Image source={ require('../../images/vaskelister.png') } style={{width: 24, height: 24}}/>
+    ),
   };
 
   componentDidMount(){
