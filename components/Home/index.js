@@ -14,19 +14,18 @@ export default class Calendar extends React.Component {
   }
   static navigationOptions = {
     drawerLabel: 'Home',
+    drawerIcon: (
+      <Image source={ require('../../images/logo.png') } style={{width: 24, height: 24}}/>
+    ),
   };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Hjem"} icon={"md-menu"} navigate={() => this.props.navigation.openDrawer()} />
+        <CustomHeader title={"Hjem"} navigation={this.props.navigation} />
 
         <View style={styles.content}>
-          <View style={{alignItems: 'center', height: 50, marginBottom: 20, marginTop: 20}}>
-            <Image source={ require('../../images/logo.png') } style={styles.logo} />
-            <Text>Teknoappen</Text>
-          </View>
 
           <ImageBackground  style={styles.largeImg} source={ require('../../images/calendar.jpg') }>
             <TouchableHighlight style={styles.largeLink} onPress={() => navigate('Calendar') }>

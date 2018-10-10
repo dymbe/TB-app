@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
-import {Root, Container, Header, Left, Body, Right, Title, Content, Footer, FooterTab, Button, Text, Icon } from 'native-base';
-import { createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
-import { createDrawerNavigator } from 'react-navigation'; // Version can be specified in package.json
+import { StyleSheet, View, Image } from 'react-native';
+import {Root, Container, Content, Header, Left, Body, Right, Title, Footer, FooterTab, Button, Text, Icon } from 'native-base';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation'; // Version can be specified in package.json
 import Expo from 'expo'
 
 import CustomHeader from './components/CustomHeader';
@@ -43,6 +42,19 @@ export default class App extends Component {
   }
 }
 
+const CustomDrawerComponent = (props) => (
+  <Container>
+    <Header style={{height: 200, backgroundColor: 'white', paddingTop: 24}}>
+      <Body style={{alignItems: 'center'}}>
+        <Image source={require('./images/logo.png')} style={{height: 150, width: 150}} />
+      </Body>
+    </Header>
+    <Content>
+      <DrawerItems {...props} />
+    </Content>
+  </Container>
+)
+
 const AppStack = createDrawerNavigator({
   Home: {
     screen: HomeScreen,
@@ -67,6 +79,11 @@ const AppStack = createDrawerNavigator({
   },
 }, {
   initialRouteName: 'Home',
+  drawerPosition: 'right',
+  contentComponent: CustomDrawerComponent,
+  drawerOpenRoute: 'DrawerOpen',
+  drawerCloseRoute: 'DrawerCloe',
+  drawerToggleRoute: 'DrawerToggle',
   //Hide GODDAMN header that lies on top of drawer navigation
   headerMode: 'none',
   navigationOptions: {

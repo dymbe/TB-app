@@ -13,7 +13,7 @@ export default class Turneringer extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Turneringer"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Turneringer"} icon={"ios-arrow-back"} navigation={this.props.navigation} />
 
         <View style={styles.content}>
           <Text>Turneringssiden</Text>

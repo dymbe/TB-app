@@ -13,7 +13,7 @@ export default class Kortspill extends React.Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <CustomHeader title={"Kortspill"} icon={"ios-arrow-back"} navigate={() => this.props.navigation.goBack(null)} />
+        <CustomHeader title={"Kortspill"} icon={"ios-arrow-back"} navigation={this.props.navigation} />
 
         <View style={styles.content}>
           <Text>Kortspillsiden</Text>
